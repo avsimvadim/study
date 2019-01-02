@@ -10,7 +10,6 @@ import java.lang.reflect.Method;
 @Target(ElementType.METHOD)
 @interface MyAnnotation {
     String key();
-
     String value();
 }
 

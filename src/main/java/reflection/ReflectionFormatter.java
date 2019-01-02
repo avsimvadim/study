@@ -11,13 +11,10 @@ public class ReflectionFormatter {
     public String format(Object obj) {
         Class struc = obj.getClass();
         StringBuilder sb = new StringBuilder();
-
         sb.append(String.format("%s:%s\n", "type", struc.getName()));
-
         Field[] fields = struc.getDeclaredFields();
         for (Field field : fields) {
             try {
-
                 if (field.isAnnotationPresent(Save.class)) {
                     Save save = field.getDeclaredAnnotation(Save.class);
                     String fieldName = field.getName();
