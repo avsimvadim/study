@@ -5,7 +5,7 @@ import java.util.List;
 
 public class _01Intro {
     public static void main(String[] args) {
-        IContainer container = new Container();
+        IContainer container = new Container();  //or custom lock SpinLock
         long start = System.currentTimeMillis();
         List<Thread> threadList = new ArrayList<>();
         int operationCount = 1000000;
