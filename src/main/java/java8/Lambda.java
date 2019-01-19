@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Lambda {
     public static void main(String[] args) {
+        List<String> list = Arrays.asList("acsdvs", "sgdg", "fgfg", "ree","acvs", "bsgdg", "fgbbbbbbbfg", "rfvee");
 //        Function<String, Integer> function1 = new Function<String, Integer>() {
 //            @Override
 //            public Integer apply(String s) {
@@ -18,18 +19,17 @@ public class Lambda {
 //
 //        Function<String, Integer> function3 = s -> s.length() * 2;
 
-        List<String> list = Arrays.asList("acsdvs", "sgdg", "fgfg", "ree","acvs", "bsgdg", "fgbbbbbbbfg", "rfvee");
 
-        List<Integer> result = list.stream().map(s -> s.length() * 2).collect(Collectors.toList());
-
-        for (Integer integer : result) {
-            System.out.println(integer);
-        }
-
-        //thread
-        Runnable runnable = () -> {
-            System.out.println();
-        };
-        Thread thread = new Thread(runnable);
+//        List<Integer> result = list.stream().map(s -> s.length() * 2).collect(Collectors.toList());
+//
+//        for (Integer integer : result) {
+//            System.out.println(integer);
+//        }
+//
+//        //thread
+//        Runnable runnable = () -> {
+//            System.out.println();
+//        };
+//        Thread thread = new Thread(runnable);
     }
 }
