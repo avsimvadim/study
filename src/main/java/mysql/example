@@ -1,0 +1,410 @@
+CREATE DATABASE test1;
+USE test1;
+DROP DATABASE test1;
+
+BACKUP DATABASE test1
+TO DISK = 'D:\testDB.bak';
+
+CREATE TABLE Persons (
+    PersonID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+
+DROP TABLE Persons;
+DESC Persons;
+
+/*delete data inside table but not the table itself*/
+TRUNCATE TABLE Persons;
+
+/*to add/delete a column*/
+ALTER TABLE Persons
+ADD ggg DOUBLE;
+
+ALTER TABLE Persons
+DROP COLUMN ggg;
+
+/*insert*/
+INSERT INTO Persons VALUES(1, "Tahiiev", "Vadym", "Metalistiv 5", "Kyiv");
+
+INSERT INTO Persons (PersonID, LastName, FirstName, City)
+VALUES(2, "Vorozhbit", "Nastia", "Kyiv");
+
+/*select*/
+SELECT PersonID, LastName, FirstName, Address
+FROM Persons;
++----------+-----------+-----------+--------------+
+| PersonID | LastName  | FirstName | Address      |
++----------+-----------+-----------+--------------+
+|        1 | Tahiiev   | Vadym     | Metalistiv 5 |
+|        2 | Vorozhbit | Nastia    | NULL         |
++----------+-----------+-----------+--------------+
+
+SELECT *
+FROM Persons;
++----------+-----------+-----------+--------------+------+
+| PersonID | LastName  | FirstName | Address      | City |
++----------+-----------+-----------+--------------+------+
+|        1 | Tahiiev   | Vadym     | Metalistiv 5 | Kyiv |
+|        2 | Vorozhbit | Nastia    | NULL         | Kyiv |
++----------+-----------+-----------+--------------+------+
+
+SELECT DISTINCT PersonID, LastName, City
+FROM Persons;
++----------+-----------+------+
+| PersonID | LastName  | City |
++----------+-----------+------+
+|        1 | Tahiiev   | Kyiv |
+|        2 | Vorozhbit | Kyiv |
++----------+-----------+------+
+
+SELECT DISTINCT City
+FROM Persons;
++------+
+| City |
++------+
+| Kyiv |
++------+
+
+/*The following SQL statement lists the number of different (distinct) */
+SELECT COUNT(DISTINCT City) FROM Persons;
++----------------------+
+| COUNT(DISTINCT City) |
++----------------------+
+|                    1 |
++----------------------+
+
+
+/*foreign primary key*/
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int NOT NULL,
+    FOREIGN KEY (PersonID) REFERENCES Persons(ID)
+);
+
+INSERT INTO Persons VALUES(1, "Tahiiev", "Vadim", 22);
+INSERT INTO Persons VALUES(2, "Kravec", "Kiril", 25);
+INSERT INTO Persons VALUES(3, "Dmutruk", "Oleh", 19);
+INSERT INTO Orders VALUES(03, 42424, 1);
+INSERT INTO Orders VALUES(14447, 42425, 2);
+INSERT INTO Orders VALUES(14004, 42426, 3);
+
+SELECT * FROM Persons, Orders;
++----+----------+-----------+------+---------+-------------+----------+
+| ID | LastName | FirstName | Age  | OrderID | OrderNumber | PersonID |
++----+----------+-----------+------+---------+-------------+----------+
+|  1 | Tahiiev  | Vadim     |   22 |       3 |       42424 |        1 |
+|  2 | Kravec   | Kiril     |   25 |       3 |       42424 |        1 |
+|  3 | Dmutruk  | Oleh      |   19 |       3 |       42424 |        1 |
+|  1 | Tahiiev  | Vadim     |   22 |   14447 |       42425 |        2 |
+|  2 | Kravec   | Kiril     |   25 |   14447 |       42425 |        2 |
+|  3 | Dmutruk  | Oleh      |   19 |   14447 |       42425 |        2 |
+|  1 | Tahiiev  | Vadim     |   22 |   14004 |       42426 |        3 |
+|  2 | Kravec   | Kiril     |   25 |   14004 |       42426 |        3 |
+|  3 | Dmutruk  | Oleh      |   19 |   14004 |       42426 |        3 |
++----+----------+-----------+------+---------+-------------+----------
+
+SELECT *
+FROM Persons, Orders
+WHERE Persons.ID = Orders.PersonID;
+
++----+----------+-----------+------+---------+-------------+----------+
+| ID | LastName | FirstName | Age  | OrderID | OrderNumber | PersonID |
++----+----------+-----------+------+---------+-------------+----------+
+|  1 | Tahiiev  | Vadim     |   22 |       3 |       42424 |        1 |
+|  2 | Kravec   | Kiril     |   25 |   14447 |       42425 |        2 |
+|  3 | Dmutruk  | Oleh      |   19 |   14004 |       42426 |        3 |
++----+----------+-----------+------+---------+-------------+----------+
+
+SELECT ID as id, LastName as LaStNaMe, OrderNumber
+FROM Persons as p, Orders as o
+WHERE p.ID = o.PersonID;
+
++----+----------+-------------+
+| id | LaStNaMe | OrderNumber |
++----+----------+-------------+
+|  1 | Tahiiev  |       42424 |
+|  2 | Kravec   |       42425 |
+|  3 | Dmutruk  |       42426 |
++----+----------+-------------+
+
+/*CHEck*/
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CHECK (Age>=18)
+);
+
+ALTER TABLE Persons
+ADD CHECK (Age>=18);
+
+/*index*/
+CREATE TABLE Students (
+    ID int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID)
+);
+
+INSERT INTO Students VALUES(1, "Tahiiev", "Vadim", 22);
+INSERT INTO Students VALUES(2, "Kravec", "Kiril", 25);
+INSERT INTO Students VALUES(3, "Dmutruk", "Oleh", 19);
+
+/*date*/
+INSERT INTO tableName VALUES("...", curdate());
+INSERT INTO tableName VALUES("...", "1996-07-11");
+
+/*join*/
+
+CREATE TABLE Orders(
+  OrderID INT,
+  CustomerID INT,
+  OrderDate DATE
+);
+
+CREATE TABLE Customers(
+  CustomerID INT,
+  CustomerName VARCHAR(30),
+  ContactName VARCHAR(30),
+  Country VARCHAR(20)
+);
+
+INSERT INTO Orders VALUES(10308,2,"1996-09-18");
+INSERT INTO Orders VALUES(10309,37,"1996-09-19");
+INSERT INTO Orders VALUES(10310,77,"1996-09-20");
+INSERT INTO Customers VALUES(1,"Alfreds Futterkiste","Maria Anders","Germany");
+INSERT INTO Customers VALUES(2,"Ana Trujillo","Ana Trujillo","Mexico");
+INSERT INTO Customers VALUES(3,"Antonio Moreno","Antonio Moreno","Mexico");
+
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
++---------+--------------+
+| OrderID | CustomerName |
++---------+--------------+
+|   10308 | Ana Trujillo |
++---------+--------------+
+
+/*Left join*/
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
++---------+--------------+
+| OrderID | CustomerName |
++---------+--------------+
+|   10308 | Ana Trujillo |
+|   10309 | NULL         |
+|   10310 | NULL         |
++---------+--------------+
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+RIGHT JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
++---------+---------------------+
+| OrderID | CustomerName        |
++---------+---------------------+
+|   10308 | Ana Trujillo        |
+|    NULL | Alfreds Futterkiste |
+|    NULL | Antonio Moreno      |
++---------+---------------------+
+
+/* FULL JOIN */
+SELECT *
+FROM Orders
+FULL JOIN Customers;
++---------+------------+------------+------------+---------------------+----------------+---------+
+| OrderID | CustomerID | OrderDate  | CustomerID | CustomerName        | ContactName    | Country |
++---------+------------+------------+------------+---------------------+----------------+---------+
+|   10308 |          2 | 1996-09-18 |          1 | Alfreds Futterkiste | Maria Anders   | Germany |
+|   10309 |         37 | 1996-09-19 |          1 | Alfreds Futterkiste | Maria Anders   | Germany |
+|   10310 |         77 | 1996-09-20 |          1 | Alfreds Futterkiste | Maria Anders   | Germany |
+|   10308 |          2 | 1996-09-18 |          2 | Ihor                | Ana Trujillo   | Ukraine |
+|   10309 |         37 | 1996-09-19 |          2 | Ihor                | Ana Trujillo   | Ukraine |
+|   10310 |         77 | 1996-09-20 |          2 | Ihor                | Ana Trujillo   | Ukraine |
+|   10308 |          2 | 1996-09-18 |          3 | Antonio Moreno      | Antonio Moreno | Mexico  |
+|   10309 |         37 | 1996-09-19 |          3 | Antonio Moreno      | Antonio Moreno | Mexico  |
+|   10310 |         77 | 1996-09-20 |          3 | Antonio Moreno      | Antonio Moreno | Mexico  |
+|   10308 |          2 | 1996-09-18 |          4 | Vadim               | Nastia         | Ukraine |
+|   10309 |         37 | 1996-09-19 |          4 | Vadim               | Nastia         | Ukraine |
+|   10310 |         77 | 1996-09-20 |          4 | Vadim               | Nastia         | Ukraine |
+|   10308 |          2 | 1996-09-18 |          5 | John                | Dogget         | USA     |
+|   10309 |         37 | 1996-09-19 |          5 | John                | Dogget         | USA     |
+|   10310 |         77 | 1996-09-20 |          5 | John                | Dogget         | USA     |
+|   10308 |          2 | 1996-09-18 |          6 | Pshek               | Kovachic       | Poland  |
+|   10309 |         37 | 1996-09-19 |          6 | Pshek               | Kovachic       | Poland  |
+|   10310 |         77 | 1996-09-20 |          6 | Pshek               | Kovachic       | Poland  |
++---------+------------+------------+------------+---------------------+----------------+---------+
+
+
+/* Cartesian product of rows. CROSS JOIN */
+
+SELECT *
+FROM Orders
+CROSS JOIN Customers;
+
++---------+------------+------------+------------+---------------------+----------------+---------+
+| OrderID | CustomerID | OrderDate  | CustomerID | CustomerName        | ContactName    | Country |
++---------+------------+------------+------------+---------------------+----------------+---------+
+|   10308 |          2 | 1996-09-18 |          1 | Alfreds Futterkiste | Maria Anders   | Germany |
+|   10309 |         37 | 1996-09-19 |          1 | Alfreds Futterkiste | Maria Anders   | Germany |
+|   10310 |         77 | 1996-09-20 |          1 | Alfreds Futterkiste | Maria Anders   | Germany |
+|   10308 |          2 | 1996-09-18 |          2 | Ana Trujillo        | Ana Trujillo   | Mexico  |
+|   10309 |         37 | 1996-09-19 |          2 | Ana Trujillo        | Ana Trujillo   | Mexico  |
+|   10310 |         77 | 1996-09-20 |          2 | Ana Trujillo        | Ana Trujillo   | Mexico  |
+|   10308 |          2 | 1996-09-18 |          3 | Antonio Moreno      | Antonio Moreno | Mexico  |
+|   10309 |         37 | 1996-09-19 |          3 | Antonio Moreno      | Antonio Moreno | Mexico  |
+|   10310 |         77 | 1996-09-20 |          3 | Antonio Moreno      | Antonio Moreno | Mexico  |
++---------+------------+------------+------------+---------------------+----------------+---------+
+
+/*self join*/
+
+SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.Country
+FROM Customers A, Customers B
+WHERE A.CustomerID <> B.CustomerID
+AND A.Country = B.Country
+ORDER BY A.Country;
++----------------+----------------+---------+
+| CustomerName1  | CustomerName2  | Country |
++----------------+----------------+---------+
+| Antonio Moreno | Ana Trujillo   | Mexico  |
+| Ana Trujillo   | Antonio Moreno | Mexico  |
++----------------+----------------+---------+
+
+
+/*union distinct*/
+/*Each SELECT statement within UNION must have the same number of columns
+The columns must also have similar data types
+The columns in each SELECT statement must also be in the same order*/
+
+SELECT OrderID FROM Orders
+UNION
+SELECT CustomerID FROM Customers;
++---------+
+| OrderID |
++---------+
+|   10308 |
+|   10309 |
+|   10310 |
+|       1 |
+|       2 |
+|       3 |
++---------+
+
+INSERT INTO Customers VALUES(4,"Vadim","Nastia","Ukraine");
+INSERT INTO Customers VALUES(5,"John","Dogget","USA");
+INSERT INTO Customers VALUES(6,"Pshek","Kovachic","Poland");
+
+
+/*select null*/
+SELECT CustomerID, Country
+FROM Customers
+WHERE Country IS NULL; /*IS NOT NULL*/
+
+/*where*/
+SELECT * FROM Customers
+WHERE Country = "Mexico";
+
+SELECT * FROM Customers
+WHERE CustomerID <> 5 AND (Country="Ukraine" OR Country="USA");
+
+SELECT * FROM Customers
+ORDER BY Country DESC;  //ACc
+
+/*min max*/
+SELECT MIN(CustomerID)   /*MAX*/
+FROM Customers
+WHERE country <> "Germany";
+
+/* count avg sum. NULL are ignored*/
+SELECT COUNT(CustomerID)
+FROM Customers;
+
+SELECT AVG(CustomerID)
+FROM Customers;
+
++-----------------+
+| MIN(CustomerID) |
++-----------------+
+|               2 |
++-----------------+
+
+/*update delete*/
+UPDATE Customers
+SET CustomerName = "Ihor", Country= "Ukraine"
+WHERE CustomerID = 2;
+
+DELETE FROM Customers
+WHERE CustomerName="Ihor";
+
+/* The WHERE clause can be combined with AND, OR, and NOT operators.*/
+SELECT *
+FROM Customers
+WHERE NOT Country="USA";
+
+/*The GROUP BY statement is often used with aggregate functions
+(COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.*/
+SELECT COUNT(CustomerID) AS ID, Country
+FROM Customers
+GROUP BY Country
+ORDER BY COUNT(CustomerID) DESC;
+
++----+---------+
+| ID | Country |
++----+---------+
+|  2 | Ukraine |
+|  1 | Mexico  |
+|  1 | USA     |
+|  1 | Poland  |
+|  1 | Germany |
++----+---------+
+
+/*having*/
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 1
+ORDER BY COUNT(CustomerID) DESC;
+
++-------------------+---------+
+| COUNT(CustomerID) | Country |
++-------------------+---------+
+|                 2 | Ukraine |
++-------------------+---------+
+
+/*exists*/
+SELECT CustomerName
+FROM Customers
+WHERE EXISTS /*ALL ANY*/
+(SELECT CustomerName FROM Customers WHERE CustomerID > 3);
+
++---------------------+
+| CustomerName        |
++---------------------+
+| Alfreds Futterkiste |
+| Ihor                |
+| Antonio Moreno      |
+| Vadim               |
+| John                |
+| Pshek               |
++---------------------+
+
+/* Copy all columns into a new table */
+SELECT *
+INTO CustomersBackup2017 IN 'Backup.mdb'
+FROM Customers
+
