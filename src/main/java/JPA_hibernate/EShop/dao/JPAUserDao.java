@@ -14,13 +14,14 @@ public class JPAUserDao {
 
     private static final Logger LOG = Logger.getLogger(JPAUserDao.class);
     private EntityManagerFactory factory;
+    private EntityManager manager;
 
     public JPAUserDao(EntityManagerFactory factory) {
         this.factory = factory;
+        manager = factory.createEntityManager();
     }
 
     public User create(User user){
-        EntityManager manager = factory.createEntityManager();
         EntityTransaction transaction = manager.getTransaction();
         try{
             transaction.begin();
@@ -30,13 +31,12 @@ public class JPAUserDao {
             LOG.error(th);
             transaction.rollback();
         }finally {
-            manager.close();
+            manager.clear();
         }
         return user;
     }
 
     public User find(int id) throws NoUserFoundException {
-        EntityManager manager = factory.createEntityManager();
         EntityTransaction transaction = manager.getTransaction();
         try{
             User found = manager.find(User.class, id);
@@ -46,13 +46,11 @@ public class JPAUserDao {
             else
                 throw new NoUserFoundException("user with id " + id + "does not exist");
         }finally {
-            manager.close();
+            manager.clear();
         }
     }
 
     public User find(String email) throws NoUserFoundException {
-        EntityManager manager = factory.createEntityManager();
-
         TypedQuery<User> typedQuery =
                 manager.createQuery("Select u FROM User u WHERE u.email = :email", User.class);
         User user = typedQuery.setParameter("email", email).getSingleResult();
@@ -63,15 +61,12 @@ public class JPAUserDao {
     }
 
     public List<User> findAll(){
-        EntityManager manager = factory.createEntityManager();
-
         TypedQuery<User> typedQuery =
                 manager.createQuery("Select u FROM User u", User.class);
         return typedQuery.getResultList();
     }
 
     public User update(User user){
-        EntityManager manager = factory.createEntityManager();
         EntityTransaction transaction = manager.getTransaction();
         User found = null;
         try{
@@ -90,13 +85,12 @@ public class JPAUserDao {
             LOG.error(th);
             transaction.rollback();
         }finally {
-            manager.close();
+            manager.clear();
         }
         return found;
     }
 
     public boolean delete(User user){
-        EntityManager manager = factory.createEntityManager();
         EntityTransaction transaction = manager.getTransaction();
         User found = null;
         try{
@@ -109,7 +103,7 @@ public class JPAUserDao {
             transaction.rollback();
             return false;
         }finally {
-            manager.close();
+            manager.clear();
         }
         return true;
     }
