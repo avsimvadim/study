@@ -1,10 +1,12 @@
 package spring.ioc.db;
 
+import org.springframework.stereotype.Component;
 import spring.ioc.model.MyUser;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component(value = "appDbComponent") // <bean name="appDbComponent" class="spring.ioc.db.AppDB"
 public class AppDB {
 
     private Map<String, MyUser> userMap;

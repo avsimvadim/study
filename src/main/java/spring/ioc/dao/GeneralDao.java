@@ -1,13 +1,16 @@
 package spring.ioc.dao;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import spring.ioc.common.Inject;
 import spring.ioc.db.AppDB;
 import spring.ioc.model.MyUser;
 
+@Component
 public class GeneralDao {
 
-    @Inject
+    @Autowired
     private AppDB db;
     private String name;
 
