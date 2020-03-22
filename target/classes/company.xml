@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<team>
+    <user id="1">
+        <name>Serhii</name>
+        <surname>Bilobrov</surname>
+        <address>
+            <city>Kyiv</city>
+            <street>metal</street>
+        </address>
+    </user>
+
+    <user id="2">
+        <name>Vadym</name>
+    </user>
+</team>

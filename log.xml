@@ -1,24 +1,32 @@
-<log4j:event logger="log4j_tutorial.TestLogging" timestamp="1551187305652" level="INFO" thread="main">
+<log4j:event logger="log4j.TestLogging" timestamp="1551187305652" level="INFO" thread="main">
 <log4j:message><![CDATA[start action in system]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j_tutorial.TestLogging" timestamp="1551204388840" level="INFO" thread="main">
+<log4j:event logger="log4j.TestLogging" timestamp="1551204388840" level="INFO" thread="main">
 <log4j:message><![CDATA[start action in system]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j_tutorial.TestLogging" timestamp="1551204515556" level="INFO" thread="main">
+<log4j:event logger="log4j.TestLogging" timestamp="1551204515556" level="INFO" thread="main">
 <log4j:message><![CDATA[start action in system]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j_tutorial.TestLogging" timestamp="1551204532306" level="INFO" thread="main">
+<log4j:event logger="log4j.TestLogging" timestamp="1551204532306" level="INFO" thread="main">
 <log4j:message><![CDATA[start action in system]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j_tutorial.TestLogging" timestamp="1551205820951" level="INFO" thread="main">
+<log4j:event logger="log4j.TestLogging" timestamp="1551205820951" level="INFO" thread="main">
 <log4j:message><![CDATA[start action in system]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j_tutorial.TestLogging" timestamp="1551205830429" level="INFO" thread="main">
+<log4j:event logger="log4j.TestLogging" timestamp="1551205830429" level="INFO" thread="main">
+<log4j:message><![CDATA[start action in system]]></log4j:message>
+</log4j:event>
+
+<log4j:event logger="study.src.main.java.log4j" timestamp="1583891781518" level="INFO" thread="main">
+<log4j:message><![CDATA[start action in system]]></log4j:message>
+</log4j:event>
+
+<log4j:event logger="study.src.main.java.log4j" timestamp="1583891861349" level="INFO" thread="main">
 <log4j:message><![CDATA[start action in system]]></log4j:message>
 </log4j:event>
 

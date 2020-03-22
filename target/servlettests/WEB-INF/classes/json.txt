@@ -1,0 +1,1 @@
+{"name":"Skoda","model":"octavia","price":33000.8}

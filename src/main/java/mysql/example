@@ -78,13 +78,6 @@ SELECT COUNT(DISTINCT City) FROM Persons;
 
 
 /*foreign primary key*/
-CREATE TABLE Persons (
-    ID int NOT NULL,
-    LastName varchar(255) NOT NULL,
-    FirstName varchar(255),
-    Age int,
-    PRIMARY KEY (ID)
-);
 
 CREATE TABLE Orders (
     OrderID int NOT NULL,
@@ -323,7 +316,7 @@ SELECT * FROM Customers
 WHERE CustomerID <> 5 AND (Country="Ukraine" OR Country="USA");
 
 SELECT * FROM Customers
-ORDER BY Country DESC;  //ACc
+ORDER BY Country DESC;  //ASC
 
 /*min max*/
 SELECT MIN(CustomerID)   /*MAX*/
@@ -405,6 +398,8 @@ WHERE EXISTS /*ALL ANY*/
 
 /* Copy all columns into a new table */
 SELECT *
+
+
 INTO CustomersBackup2017 IN 'Backup.mdb'
 FROM Customers
 

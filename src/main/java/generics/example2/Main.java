@@ -9,6 +9,5 @@ public class Main {
         StatsWildCard<Integer> statsWildCard1 = new StatsWildCard<>(new Integer[]{1,2,3});
         StatsWildCard<Double> statsWildCard2 = new StatsWildCard<>(new Double[]{1.0,2.0,3.0});
         System.out.println(statsWildCard1.sameAvg(statsWildCard2));
-
     }
 }

@@ -1,12 +1,9 @@
 package java8.Example1;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 public class Test {
     public static void main(String[] args) {
@@ -23,6 +20,7 @@ public class Test {
 
         List<String> threehighCaloricDishNames = menu.stream()
                 .filter(dish -> dish.getCallories() > 300)
+                .sorted((d1,d2)  -> d1.getCallories() - d2.getCallories())
                 .map(Dish::getName)
                 .limit(3)
                 .collect(toList());
@@ -55,6 +53,25 @@ public class Test {
 
 
         Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(groupingBy(Dish::getType));
+
+        Map<Integer, List<Dish>> dishByCalories = menu.stream()
+                .collect(Collectors.groupingBy(dish -> dish.getCallories()));
+        dishByCalories.forEach((calories, dish) -> System.out.format("calories %s: %s\n", calories, dish));
+
+        IntSummaryStatistics statistics = menu.stream()
+                .collect(Collectors.summarizingInt(dish -> dish.getCallories()));
+        System.out.println(statistics);
+
+        String shortMenu = menu.stream().map(Dish::getName).collect(joining(", "));
+        System.out.println(shortMenu);
+
+        Integer totalCalories = menu.stream()
+                .collect(reducing(0, Dish::getCallories, (i, j) -> i + j));
+        System.out.println(totalCalories);
+
+        Integer totalCalories2 = menu.stream()
+                .collect(reducing(0, Dish::getCallories, Integer::sum));
+        System.out.println(totalCalories2);
 
 
     }
