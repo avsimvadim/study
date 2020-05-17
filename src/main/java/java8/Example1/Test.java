@@ -1,15 +1,18 @@
 package java8.Example1;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
 public class Test {
     public static void main(String[] args) {
         List<Dish> menu = Arrays.asList(
-                new Dish("pork", false, 800, Dish.Type.MEAT),
-                new Dish("beef", false, 700, Dish.Type.MEAT),
+                new Dish("pork", false, 200, Dish.Type.MEAT),
+                new Dish("beef", false, 800, Dish.Type.MEAT),
                 new Dish("chicken", false, 400, Dish.Type.MEAT),
                 new Dish("french fries", true, 530, Dish.Type.OTHER),
                 new Dish("rice", true, 350, Dish.Type.OTHER),
@@ -20,7 +23,7 @@ public class Test {
 
         List<String> threehighCaloricDishNames = menu.stream()
                 .filter(dish -> dish.getCallories() > 300)
-                .sorted((d1,d2)  -> d1.getCallories() - d2.getCallories())
+                .sorted(comparing(Dish::getCallories))
                 .map(Dish::getName)
                 .limit(3)
                 .collect(toList());
@@ -38,6 +41,26 @@ public class Test {
                 .limit(3)
                 .collect(toList());
 
+
+        List<String> names2 = menu.stream()
+                .filter(new Predicate<Dish>() {
+                    @Override
+                    public boolean test(Dish dish) {
+                        System.out.println("filtering " + dish.getName());
+                        return dish.getCallories() > 300;
+                    }
+                })
+                .map(new Function<Dish, String>() {
+                    @Override
+                    public String apply(Dish dish) {
+                        System.out.println("mapping " + dish.getName());
+                        return dish.getName();
+                    }
+                })
+                .limit(3)
+                .collect(toList());
+
+
         menu.stream().map(dish -> {return dish.getName() + " ";}).forEach(System.out::print);
 
         menu.stream()
@@ -46,12 +69,9 @@ public class Test {
                 .skip(2)
                 .forEach(System.out::println);
 
-
         if(menu.stream().anyMatch(Dish::isVegetarian)){
             System.out.println("The menu is (somewhat) vegetarian friendly!!");
         }
-
-
         Map<Dish.Type, List<Dish>> dishesByType = menu.stream().collect(groupingBy(Dish::getType));
 
         Map<Integer, List<Dish>> dishByCalories = menu.stream()
@@ -72,6 +92,24 @@ public class Test {
         Integer totalCalories2 = menu.stream()
                 .collect(reducing(0, Dish::getCallories, Integer::sum));
         System.out.println(totalCalories2);
+
+
+        menu.stream()
+                .takeWhile(dish -> dish.getCallories() < 320)
+                .forEach(System.out::print);
+        System.out.println();
+        System.out.println();
+
+        menu.stream()
+                .dropWhile(dish -> dish.getCallories() < 320)
+                .forEach(System.out::print);
+        System.out.println();
+        System.out.println();
+
+        menu.stream()
+                .filter(d -> d.getCallories() > 300)
+                .skip(2)
+                .forEach(System.out::print);
 
 
     }
