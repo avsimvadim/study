@@ -98,7 +98,6 @@ public class Grouping {
         int howManyDishes3 = menu.stream().collect(collectingAndThen(toList(),List::size));
 
 
-
     }
 
 
