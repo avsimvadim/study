@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: avsim
 Created-By: IntelliJ IDEA
-Build-Jdk: 1.8
+Built-By: Vadym
+Build-Jdk: 13.0.2
 

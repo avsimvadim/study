@@ -1,32 +1,36 @@
-<log4j:event logger="log4j.TestLogging" timestamp="1551187305652" level="INFO" thread="main">
-<log4j:message><![CDATA[start action in system]]></log4j:message>
+<log4j:event logger="log4j.TestLogging" timestamp="1594091990658" level="INFO" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j.TestLogging" timestamp="1551204388840" level="INFO" thread="main">
-<log4j:message><![CDATA[start action in system]]></log4j:message>
+<log4j:event logger="log4j.TestLogging" timestamp="1594092040900" level="DEBUG" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j.TestLogging" timestamp="1551204515556" level="INFO" thread="main">
-<log4j:message><![CDATA[start action in system]]></log4j:message>
+<log4j:event logger="log4j.TestLogging" timestamp="1594092123316" level="TRACE" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j.TestLogging" timestamp="1551204532306" level="INFO" thread="main">
-<log4j:message><![CDATA[start action in system]]></log4j:message>
+<log4j:event logger="log4j.TestLogging" timestamp="1594093644716" level="INFO" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j.TestLogging" timestamp="1551205820951" level="INFO" thread="main">
-<log4j:message><![CDATA[start action in system]]></log4j:message>
+<log4j:event logger="log4j.TestLogging" timestamp="1594093681921" level="TRACE" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="log4j.TestLogging" timestamp="1551205830429" level="INFO" thread="main">
-<log4j:message><![CDATA[start action in system]]></log4j:message>
+<log4j:event logger="log4j.TestLogging" timestamp="1594093686374" level="TRACE" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="study.src.main.java.log4j" timestamp="1583891781518" level="INFO" thread="main">
-<log4j:message><![CDATA[start action in system]]></log4j:message>
+<log4j:event logger="log4j.TestLogging" timestamp="1594093928535" level="DEBUG" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
 </log4j:event>
 
-<log4j:event logger="study.src.main.java.log4j" timestamp="1583891861349" level="INFO" thread="main">
-<log4j:message><![CDATA[start action in system]]></log4j:message>
+<log4j:event logger="log4j.TestLogging" timestamp="1594147298417" level="DEBUG" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
+</log4j:event>
+
+<log4j:event logger="log4j.TestLogging" timestamp="1594147372853" level="DEBUG" thread="main">
+<log4j:message><![CDATA[child1 info]]></log4j:message>
 </log4j:event>
 

@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: JPA_hibernate.EShop.dao.JPAUserDaoTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 3.393 sec
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.527 sec <<< FAILURE! - in JPA_hibernate.EShop.dao.JPAUserDaoTest
+JPA_hibernate.EShop.dao.JPAUserDaoTest  Time elapsed: 0.526 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
+	at JPA_hibernate.EShop.dao.JPAUserDaoTest.setUp(JPAUserDaoTest.java:23)
+Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
+	at JPA_hibernate.EShop.dao.JPAUserDaoTest.setUp(JPAUserDaoTest.java:23)
+
