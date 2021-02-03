@@ -7,12 +7,12 @@ public class _01ThreadIntro {
         Thread main = Thread.currentThread();
         System.out.println(main.getName());
         MyThead myThead = new MyThead("poor info thread");
-        //weak thread = true. die id main die
+        //weak thread = true. die if main die
         myThead.setDaemon(true);
         myThead.start();
-        for (int i = 0; i <= 50; i++) {
+        for (int i = 0; i <= 25; i++) {
             System.out.printf("main working %d\n", i);
-            if (i == 25) {
+            if (i == 12) {
                 myThead.interrupt();
             }
             try {

@@ -4,43 +4,4 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <servlet>
-        <servlet-name>HelloWorld</servlet-name>
-        <servlet-class>servlet.HelloExample.HelloWorld</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>HelloWorld</servlet-name>
-        <url-pattern>/HelloWorld</url-pattern>
-    </servlet-mapping>
-
-
-    <filter>
-        <filter-name>LogFilter</filter-name>
-        <filter-class>servlet.HelloExample.filter.LogFilter</filter-class>
-        <init-param>
-            <param-name>test-param</param-name>
-            <param-value>Initialization Parameter</param-value>
-        </init-param>
-    </filter>
-
-    <filter>
-        <filter-name>AuthenFilter</filter-name>
-        <filter-class>servlet.HelloExample.filter.AuthenFilter</filter-class>
-        <init-param>
-            <param-name>test-param</param-name>
-            <param-value>Initialization Parameter</param-value>
-        </init-param>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>LogFilter</filter-name>
-        <url-pattern>/HelloWorld</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>AuthenFilter</filter-name>
-        <url-pattern>/HelloWorld</url-pattern>
-    </filter-mapping>
-
 </web-app>

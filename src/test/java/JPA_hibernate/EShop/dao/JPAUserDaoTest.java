@@ -6,12 +6,8 @@ import JPA_hibernate.EShop.model.User;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JPAUserDaoTest {
@@ -84,4 +80,5 @@ public class JPAUserDaoTest {
         dao.delete(forDelete);
         dao.find(forDelete.getId());
     }
+
 }

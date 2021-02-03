@@ -13,8 +13,9 @@ public class DB {
         students = new HashMap<>();
     }
 
-    public void addStudent(Student student) {
+    public boolean addStudent(Student student) {
         students.put((int)(Math.random() * 100000), student);
+        return true;
     }
 
     public Map<Integer, Student> getStudents(){

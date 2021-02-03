@@ -93,13 +93,14 @@ public class Test {
                 .collect(reducing(0, Dish::getCallories, Integer::sum));
         System.out.println(totalCalories2);
 
-
+        //for sorted stream
         menu.stream()
                 .takeWhile(dish -> dish.getCallories() < 320)
                 .forEach(System.out::print);
         System.out.println();
         System.out.println();
 
+        //for sorted stream
         menu.stream()
                 .dropWhile(dish -> dish.getCallories() < 320)
                 .forEach(System.out::print);

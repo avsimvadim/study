@@ -54,7 +54,7 @@ public class Test {
     }
 
     public static Map<Department, Double> groupByDepartmentWithSumOfSalaries(List<User> list){
-        return list.stream().collect(groupingBy(User::getDepartment,summingDouble(User::getMoney)));
+        return list.stream().collect(groupingBy(User::getDepartment, summingDouble(User::getMoney)));
     }
 
     public static Map<String, List<User>> groupByCityName(List<User> list){

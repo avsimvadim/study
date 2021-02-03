@@ -5,6 +5,6 @@
     <title >Main</title>
 </head>
 <body>
-    <a href="form">Register</a>
+    <a href="/HelloWorld">Register</a>
 </body>
 </html>

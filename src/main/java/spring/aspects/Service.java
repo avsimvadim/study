@@ -14,9 +14,9 @@ public class Service {
     public Service() {
     }
 
-    public void addStudent(Student student){
+    public boolean addStudent(Student student){
         System.out.println("Add student " + student);
-        db.addStudent(student);
+        return db.addStudent(student);
     }
 
     public Map<Integer, Student>  getAllStudents(){
