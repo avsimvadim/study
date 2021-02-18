@@ -1,4 +1,4 @@
-package hatchways_tasks;
+package tricky_tasks;
 
 public class PalindromesString {
     public static void main(String[] args) {

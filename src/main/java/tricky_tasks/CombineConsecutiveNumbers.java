@@ -1,4 +1,4 @@
-package hatchways_tasks;
+package tricky_tasks;
 
 import java.util.Arrays;
 
