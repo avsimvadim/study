@@ -1,6 +1,5 @@
 package tricky_tasks;
 
-
 //given set of intervals be {{1,3}, {2,4}, {5,7}, {6,8} }
 // The intervals {1,3} and {2,4} overlap with each other,
 // so they should be merged and become {1, 4}.

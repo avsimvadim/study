@@ -78,6 +78,8 @@ public class Test {
                 .collect(Collectors.groupingBy(dish -> dish.getCallories()));
         dishByCalories.forEach((calories, dish) -> System.out.format("calories %s: %s\n", calories, dish));
 
+
+        //summarizingInt used for statistics
         IntSummaryStatistics statistics = menu.stream()
                 .collect(Collectors.summarizingInt(dish -> dish.getCallories()));
         System.out.println(statistics);
@@ -92,6 +94,10 @@ public class Test {
         Integer totalCalories2 = menu.stream()
                 .collect(reducing(0, Dish::getCallories, Integer::sum));
         System.out.println(totalCalories2);
+
+        Integer totalCalories3 = menu.stream()
+                .collect(summingInt(Dish::getCallories));
+        System.out.println(totalCalories3);
 
         //for sorted stream
         menu.stream()
