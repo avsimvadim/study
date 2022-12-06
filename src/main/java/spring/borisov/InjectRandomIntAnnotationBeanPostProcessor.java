@@ -10,7 +10,7 @@ import java.util.Random;
 public class InjectRandomIntAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String s) throws BeansException {
-        Field[] fields = bean.getClass().getFields();
+        Field[] fields = bean.getClass().getDeclaredFields();
         for (Field field: fields) {
             InjectRandomInt annotation = field.getAnnotation(InjectRandomInt.class);
             if (annotation != null){
