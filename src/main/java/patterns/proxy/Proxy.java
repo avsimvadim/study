@@ -11,9 +11,14 @@ package patterns.proxy;
 
 public class Proxy {
     public static void main(String[] args) {
-        Image image = new ProxyImage("D:dvd//imag");
-        image.display();
+        Image image = new ProxyImage("test_10mb.jpg");
 
+        //image will be loaded from disk
+        image.display();
+        System.out.println("");
+
+        //image will not be loaded from disk
+        image.display();
     }
 }
 
