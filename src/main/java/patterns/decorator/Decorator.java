@@ -2,7 +2,7 @@ package patterns.decorator;
 
 public class Decorator {
     public static void main(String[] args) {
-        PrinterInterface printerInterface = new QuotesDecorator(new Printer("hey"));
+        PrinterInterface printerInterface = new BracesDecorator(new QuotesDecorator(new Printer("hey")));
         printerInterface.print();
     }
 }
@@ -36,6 +36,21 @@ class QuotesDecorator implements PrinterInterface {
         System.out.print("\"");
         component.print();
         System.out.print("\"");
+    }
+}
+
+class BracesDecorator implements PrinterInterface{
+    private PrinterInterface component;
+
+    public BracesDecorator(PrinterInterface component) {
+        this.component = component;
+    }
+
+    @Override
+    public void print() {
+        System.out.print("(");
+        component.print();
+        System.out.print(")");
     }
 }
 
