@@ -1,9 +1,6 @@
 package java8.Example2;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
@@ -13,6 +10,7 @@ import static java.util.stream.Collectors.*;
  */
 public class Test {
     public static void main(String[] args) {
+        
         //init
         ArrayList<User> userList = new ArrayList<>();
 
@@ -39,7 +37,6 @@ public class Test {
         groupByCityName(userList).forEach((c,l) -> System.out.println(c + ": " + l.toString()));
         System.out.println();
         System.out.println(amountOfAllSalariesUsingReduce(userList));
-
     }
 
     public static List<User> topBySalaryWithLimit(List<User> list, int limit){

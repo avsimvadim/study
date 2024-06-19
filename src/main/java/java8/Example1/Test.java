@@ -113,6 +113,7 @@ public class Test {
         System.out.println();
         System.out.println();
 
+        //skip first two elements
         menu.stream()
                 .filter(d -> d.getCallories() > 300)
                 .skip(2)

@@ -36,48 +36,48 @@ public class TestCRUD {
     }
 
     //create
-    private static void persist(EntityManager manager, Client...clients){
+    private static void persist(EntityManager manager, Client... clients) {
         EntityTransaction transaction = manager.getTransaction();
-        try{
+        try {
             transaction.begin();
-            for(Client client: clients){
+            for (Client client : clients) {
                 manager.persist(client);
             }
             transaction.commit();
-        }catch (Throwable th){
+        } catch (Throwable th) {
             th.printStackTrace();
             transaction.rollback();
         }
     }
 
     //read
-    private static Client find(EntityManager manager, Object id){
+    private static Client find(EntityManager manager, Object id) {
         return manager.find(Client.class, id);
     }
 
     //update
-    private static void update(EntityManager manager, Client client){
+    private static void update(EntityManager manager, Client client) {
         EntityTransaction transaction = manager.getTransaction();
-        try{
+        try {
             transaction.begin();
             manager.merge(client);
             transaction.commit();
-        }catch (Throwable th){
+        } catch (Throwable th) {
             th.printStackTrace();
             transaction.rollback();
         }
     }
 
     //delete
-    private static void delete(EntityManager manager, Client...clients){
+    private static void delete(EntityManager manager, Client... clients) {
         EntityTransaction transaction = manager.getTransaction();
-        try{
+        try {
             transaction.begin();
-            for(Client client: clients){
+            for (Client client : clients) {
                 manager.remove(client);
             }
             transaction.commit();
-        }catch (Throwable th){
+        } catch (Throwable th) {
             th.printStackTrace();
             transaction.rollback();
         }

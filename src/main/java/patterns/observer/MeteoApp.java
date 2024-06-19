@@ -42,7 +42,7 @@ class MeteoStation implements Observed{
         }
     }
 
-    public void setData(int temp, int pressure){
+    protected void setData(int temp, int pressure){
         this.temp = temp;
         this.pressure = pressure;
         notifyObservers(temp,pressure);

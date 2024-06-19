@@ -9,6 +9,9 @@ package patterns.proxy;
 // For the client, usage of a proxy object is similar to using the real object,
 // because both implement the same interface.
 
+import java.util.HashMap;
+import java.util.Set;
+
 public class Proxy {
     public static void main(String[] args) {
         Image image = new ProxyImage("test_10mb.jpg");
